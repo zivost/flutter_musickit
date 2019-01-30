@@ -123,12 +123,14 @@ public class SwiftMusickitPlugin: NSObject, FlutterPlugin {
     
     // Get Apple Music User Token
     func fetchUserToken(developerToken : String, result: @escaping FlutterResult) {
+        print("iOS Developer Token", developerToken)
         if #available(iOS 11.0, *) {
             let serviceController = SKCloudServiceController()
             
             serviceController.requestUserToken(forDeveloperToken: developerToken) { (userToken, err) in
                 if (err != nil) {
                     result(FlutterError(code: FlutterErrorCode.unavailable, message: "Error Encountered", details: err.debugDescription))
+                    print("iOS fetchUserToken", err.debugDescription)
                 } else {
                     result(userToken)
                 }

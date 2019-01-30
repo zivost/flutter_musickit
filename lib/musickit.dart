@@ -21,8 +21,9 @@ class Musickit {
     return result;
   }
 
-  static Future<String> get fetchUserToken async {
-    final String result = await _channel.invokeMethod('fetchUserToken');
+  static Future<String> fetchUserToken(String developerToken) async {
+    final String result = await _channel.invokeMethod('fetchUserToken', developerToken);
+    print("fetchUserToken " + result);
     return result;
   }
 
